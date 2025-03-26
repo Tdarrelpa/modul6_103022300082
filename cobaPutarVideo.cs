@@ -11,7 +11,7 @@ namespace cobaPutarVideo
         public SayaTubeVideo(string title)
         {
             Random rnd = new Random(); // Membuat objek random baru untuk menghasilkan angka acak
-            this.id = rnd.Next(00000, 99999); // Buat nomor acak antara 00000 dan 99999 secara otomatis (inlkusif)
+            id = rnd.Next(00000, 99999); // Buat nomor acak antara 00000 dan 99999 secara otomatis (inlkusif), 'this' disingkirkan karena attributenya read-only
             this.title = title;
 
             Contract.Requires(!string.IsNullOrEmpty(title), "Title must not be empty."); // Pastikan judul tidak kosong
