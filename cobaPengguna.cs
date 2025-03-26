@@ -1,12 +1,11 @@
 ﻿using cobaPutarVideo;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
 namespace cobaPengguna
 {
     public class SayaTubeUser
     {
-        private int id;
+        private readonly int id;
         private string username;
         private List<SayaTubeVideo> uploadedVideo;
         public SayaTubeUser(string username)
