@@ -53,6 +53,6 @@ namespace cobaPutarVideo
             Console.WriteLine($"Play Count: {playCount}");
         }
 
-        public String GetTitle() {return title;}
+        public int GetPlayCount() {return playCount;}
     }
 }

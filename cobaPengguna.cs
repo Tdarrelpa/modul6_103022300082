@@ -27,8 +27,8 @@ namespace cobaPengguna
         public void UploadVideo(SayaTubeVideo video)
         {
             Contract.Requires(video != null, "Video must not be null."); // Ensure video is not null
-            Contract.Requires(video.GetTitle() != null, "Video title must not be null."); // Ensure video title is not null
-            Contract.Requires(video.GetTitle().Length <= 200, "Video title must be less than or equal to 200 characters."); // Ensure video title length is valid
+            Contract.Requires(video.GetPlayCount() != 0, "Video title must not be null."); // Ensure video title is not null
+            Contract.Requires(video.GetPlayCount() <= 200, "Video title must be less than or equal to 200 characters."); // Ensure video title length is valid
             this.uploadedVideo.Add(video);
         }
 
@@ -38,7 +38,7 @@ namespace cobaPengguna
             Console.WriteLine($"User: {this.username}");
             for (int i = 0; i < GetTotalVideoPlayCount(); i++)
             {
-                Console.WriteLine($"Video {i + 1} judul: {this.uploadedVideo[i].GetTitle()}");
+                Console.WriteLine($"Video {i + 1} judul: {this.uploadedVideo[i].GetPlayCount()}");
             }
         }
     }
