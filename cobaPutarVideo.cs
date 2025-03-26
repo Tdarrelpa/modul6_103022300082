@@ -4,7 +4,7 @@ namespace cobaPutarVideo
 {
     public class SayaTubeVideo
     {
-        private int id;
+        private readonly int id;
         private string title;
         private int playCount;
 

@@ -7,7 +7,7 @@ namespace cobaPengguna
     {
         private readonly int id;
         private string username;
-        private List<SayaTubeVideo> uploadedVideo;
+        private readonly List<SayaTubeVideo> uploadedVideo;
         public SayaTubeUser(string username)
         {
             Contract.Requires(!string.IsNullOrEmpty(username), "Username must not be empty."); // Ensure username is not empty
