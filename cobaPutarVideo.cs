@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace cobaPutarVideo 
 {
@@ -14,15 +16,15 @@ namespace cobaPutarVideo
             this.id = rnd.Next(00000, 99999); // Buat nomor acak antara 00000 dan 99999 secara otomatis (inlkusif)
             this.title = title;
 
-            //Contract.Requires(!string.IsNullOrEmpty(title), "Title must not be empty."); // Pastikan judul tidak kosong
-            //Contract.Requires(title.Length <= 100, "Title must be less than or equal to 100 characters."); // Pastikan judul tidak lebih dari 100 karakter
-
+            Contract.Requires(!string.IsNullOrEmpty(title), "Title must not be empty."); // Pastikan judul tidak kosong
+            Contract.Requires(title.Length <= 200, "Title must be less than or equal to 100 characters."); // Pastikan judul tidak lebih dari 100 karakter
             this.playCount = 0; // Tetapkan playCount ke 0
         }
 
         public void IncreasePlayCount(int playCount)
         {
-            /*
+            Contract.Requires(playCount >= 0, "Play count must be non-negative."); // Ensure playCount is not negative
+            Contract.Requires(playCount <= 25000000, "Play count must be less than or equal to 25,000,000."); // Ensure playCount does not exceed the limit
             try
             {
                 checked
@@ -39,8 +41,6 @@ namespace cobaPutarVideo
                 Console.WriteLine(e.Message);
                 this.playCount = 0; // Tetapkan playCount ke 0 jika terjadi error
             }
-            */
-            this.playCount += playCount; // Tambahkan playCount dengan jumlah yang diberikan
         }
 
         public void PrintVideoDetails()

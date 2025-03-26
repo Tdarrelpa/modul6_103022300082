@@ -1,4 +1,6 @@
 ﻿using cobaPutarVideo;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace cobaPengguna
 {
@@ -9,16 +11,13 @@ namespace cobaPengguna
         private List<SayaTubeVideo> uploadedVideo;
         public SayaTubeUser(string username)
         {
+            Contract.Requires(!string.IsNullOrEmpty(username), "Username must not be empty."); // Ensure username is not empty
+            Contract.Requires(username.Length <= 100, "Username must be less than or equal to 100 characters."); // Ensure username length is valid
+
             Random rnd = new Random(); // Membuat objek random baru untuk menghasilkan angka acak
             this.id = rnd.Next(00000, 99999); // Buat nomor acak antara 00000 dan 99999 secara otomatis (inlkusif)
             this.username = username;
             this.uploadedVideo = new List<SayaTubeVideo>();
-            //Contract.Requires(!string.IsNullOrEmpty(username), "Username must not be empty."); // Pastikan username tidak kosong
-            //Contract.Requires(username.Length <= 20, "Username must be less than or equal to 20 characters."); // Pastikan username tidak lebih dari 20 karakter
-            //Contract.Requires(!string.IsNullOrEmpty(email), "Email must not be empty."); // Pastikan email tidak kosong
-            //Contract.Requires(email.Length <= 50, "Email must be less than or equal to 50 characters."); // Pastikan email tidak lebih dari 50 karakter
-            //Contract.Requires(!string.IsNullOrEmpty(password), "Password must not be empty."); // Pastikan password tidak kosong
-            //Contract.Requires(password.Length <= 20, "Password must be less than or equal to 20 characters."); // Pastikan password tidak lebih dari 20 karakter
         }
         public int GetTotalVideoPlayCount()
         {
@@ -27,11 +26,15 @@ namespace cobaPengguna
 
         public void UploadVideo(SayaTubeVideo video)
         {
+            Contract.Requires(video != null, "Video must not be null."); // Ensure video is not null
+            Contract.Requires(video.GetTitle() != null, "Video title must not be null."); // Ensure video title is not null
+            Contract.Requires(video.GetTitle().Length <= 200, "Video title must be less than or equal to 200 characters."); // Ensure video title length is valid
             this.uploadedVideo.Add(video);
         }
 
         public void PrintAllVideoPlayCount() 
         {
+            Contract.Ensures(GetTotalVideoPlayCount() <= 8); // Ensure that the number of videos printed does not exceed 8
             Console.WriteLine($"User: {this.username}");
             for (int i = 0; i < GetTotalVideoPlayCount(); i++)
             {
